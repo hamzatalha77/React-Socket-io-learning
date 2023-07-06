@@ -14,19 +14,10 @@ const io = new Server(server, {
     methods: ['GET', 'POST']
   }
 })
-
+io.on('connection', (socket) => {
+  console.log(`User Connected: ${socket.id}`)
+})
 server.listen(3001, () => {
   console.log('SERVER IS RUNNING')
 })
 
-// import express from 'express';
-// const app = express();
-// const port = 3000;
-
-// app.get('/', (req, res) => {
-//   res.send('Hello World!');
-// });
-
-// app.listen(port, () => {
-//   return console.log(`Express is listening at http://localhost:${port}`);
-// });
