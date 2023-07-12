@@ -7,7 +7,11 @@ const AppChat = () => {
   const [username, setUsername] = useState('')
   const [room, setRoom] = useState('')
 
-  const joinRoom = () => {}
+  const joinRoom = () => {
+    if (username !== '' && room !== '') {
+      socket.emit('join_room', room)
+    }
+  }
   return (
     <div>
       <h2>Join Chat</h2>
@@ -18,7 +22,14 @@ const AppChat = () => {
           setUsername(event.target.value)
         }}
       />
-      <input type="text" placeholder="Room ID..." />
+      <input
+        type="text"
+        placeholder="Room ID..."
+        onChange={(event) => {
+          setRoom(event.target.value)
+        }}
+      />
+      <button>Join A Room</button>
     </div>
   )
 }
