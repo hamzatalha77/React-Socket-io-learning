@@ -29,7 +29,7 @@ const AppChat = () => {
           setRoom(event.target.value)
         }}
       />
-      <button>Join A Room</button>
+      <button onClick={joinRoom}>Join A Room</button>
     </div>
   )
 }
