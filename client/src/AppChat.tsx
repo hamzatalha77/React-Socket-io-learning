@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { io } from 'socket.io-client'
+import Chat from './components/Chat'
 
 const socket = io('http://localhost:3001')
 
@@ -30,6 +31,7 @@ const AppChat = () => {
         }}
       />
       <button onClick={joinRoom}>Join A Room</button>
+      <Chat socket={socket} username={username} room={room} />
     </div>
   )
 }
