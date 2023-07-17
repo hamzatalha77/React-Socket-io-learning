@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-
+import '../App.css'
 interface ChatProps {
   socket: any
   username: string
@@ -28,7 +28,7 @@ const Chat: React.FC<ChatProps> = ({ socket, username, room }) => {
     })
   }, [socket])
   return (
-    <div>
+    <div className="chat-window">
       <div className="chat-header">
         <p>Live Chat</p>
       </div>
