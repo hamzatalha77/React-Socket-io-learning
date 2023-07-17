@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 interface ChatProps {
   socket: any
@@ -22,6 +22,9 @@ const Chat: React.FC<ChatProps> = ({ socket, username, room }) => {
       await socket.emit('send_message', messageData)
     }
   }
+  useEffect(() => {
+    socket.on('receive_message', () => {})
+  }, [socket])
   return (
     <div>
       <div className="chat-header">
