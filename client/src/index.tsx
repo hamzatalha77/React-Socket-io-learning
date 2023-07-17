@@ -4,8 +4,4 @@ import ReactDOM from 'react-dom/client'
 import AppChat from './AppChat'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
-root.render(
-  <React.StrictMode>
-    <AppChat />
-  </React.StrictMode>
-)
+root.render(<AppChat />)
