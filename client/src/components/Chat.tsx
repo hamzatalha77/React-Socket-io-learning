@@ -23,7 +23,9 @@ const Chat: React.FC<ChatProps> = ({ socket, username, room }) => {
     }
   }
   useEffect(() => {
-    socket.on('receive_message', () => {})
+    socket.on('receive_message', (data) => {
+      console.log(data)
+    })
   }, [socket])
   return (
     <div>
