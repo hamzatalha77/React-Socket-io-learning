@@ -7,6 +7,7 @@ const socket = io('http://localhost:3001')
 const AppChat = () => {
   const [username, setUsername] = useState('')
   const [room, setRoom] = useState('')
+  const [showChat, setShowChat] = useState(false)
 
   const joinRoom = () => {
     if (username !== '' && room !== '') {
@@ -15,25 +16,28 @@ const AppChat = () => {
   }
   return (
     <div className="App">
-      <div className="joinChatContainer">
-        <h2>Join Chat</h2>
-        <input
-          type="text"
-          placeholder="hamza..."
-          onChange={(event) => {
-            setUsername(event.target.value)
-          }}
-        />
-        <input
-          type="text"
-          placeholder="Room ID..."
-          onChange={(event) => {
-            setRoom(event.target.value)
-          }}
-        />
-        <button onClick={joinRoom}>Join A Room</button>
-      </div>
-      <Chat socket={socket} username={username} room={room} />
+      {!showChat ? (
+        <div className="joinChatContainer">
+          <h2>Join Chat</h2>
+          <input
+            type="text"
+            placeholder="hamza..."
+            onChange={(event) => {
+              setUsername(event.target.value)
+            }}
+          />
+          <input
+            type="text"
+            placeholder="Room ID..."
+            onChange={(event) => {
+              setRoom(event.target.value)
+            }}
+          />
+          <button onClick={joinRoom}>Join A Room</button>
+        </div>
+      ) : (
+        <Chat socket={socket} username={username} room={room} />
+      )}
     </div>
   )
 }
