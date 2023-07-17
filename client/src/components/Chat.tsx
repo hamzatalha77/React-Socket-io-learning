@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import '../App.css'
+
+interface Message {
+  room: string
+  author: string
+  message: string
+  time: string
+}
+
 interface ChatProps {
   socket: any
   username: string
@@ -7,7 +15,8 @@ interface ChatProps {
 }
 
 const Chat: React.FC<ChatProps> = ({ socket, username, room }) => {
-  const [currentMessage, setCurrentMessage] = useState('')
+  const [currentMessage, setCurrentMessage] = useState<string>('')
+  const [messageList, setMessageList] = useState<Message[]>([])
   const sendMessage = async () => {
     if (currentMessage !== '') {
       const messageData = {
@@ -23,8 +32,8 @@ const Chat: React.FC<ChatProps> = ({ socket, username, room }) => {
     }
   }
   useEffect(() => {
-    socket.on('receive_message', (data: any) => {
-      console.log(data)
+    socket.on('receive_message', (data: Message) => {
+      setMessageList((list) => [...list, data])
     })
   }, [socket])
   return (
@@ -32,7 +41,11 @@ const Chat: React.FC<ChatProps> = ({ socket, username, room }) => {
       <div className="chat-header">
         <p>Live Chat</p>
       </div>
-      <div className="chat-body"></div>
+      <div className="chat-body">
+        {messageList.map((messageContent, index) => {
+          return <h1 key={index}>{messageContent.message}</h1>
+        })}
+      </div>
       <div className="chat-footer">
         <input
           type="text"
