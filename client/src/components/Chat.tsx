@@ -29,6 +29,7 @@ const Chat: React.FC<ChatProps> = ({ socket, username, room }) => {
           new Date(Date.now()).getMinutes()
       }
       await socket.emit('send_message', messageData)
+      setMessageList((list) => [...list, messageData])
     }
   }
   useEffect(() => {
