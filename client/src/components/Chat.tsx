@@ -49,7 +49,10 @@ const Chat: React.FC<ChatProps> = ({ socket, username, room }) => {
               <div>
                 <div className="message-content"></div>
                 <p>{messageContent.message}</p>
-                <div className="message-meta"></div>
+                <div className="message-meta">
+                  <p>{messageContent.time}</p>
+                  <p>{messageContent.author}</p>
+                </div>
               </div>
             </div>
           )
