@@ -30,6 +30,7 @@ const Chat: React.FC<ChatProps> = ({ socket, username, room }) => {
       }
       await socket.emit('send_message', messageData)
       setMessageList((list) => [...list, messageData])
+      setCurrentMessage('')
     }
   }
   useEffect(() => {
@@ -43,8 +44,8 @@ const Chat: React.FC<ChatProps> = ({ socket, username, room }) => {
         <p>Live Chat</p>
       </div>
       <div className="chat-body">
-        <ScrollToBottom>
-          {messageList.map((messageContent, index) => {
+        <ScrollToBottom className="message-container">
+          {messageList.map((messageContent) => {
             return (
               <div
                 className="message"
@@ -68,6 +69,7 @@ const Chat: React.FC<ChatProps> = ({ socket, username, room }) => {
       <div className="chat-footer">
         <input
           type="text"
+          value={currentMessage}
           placeholder="hey..."
           onChange={(event) => {
             setCurrentMessage(event.target.value)
