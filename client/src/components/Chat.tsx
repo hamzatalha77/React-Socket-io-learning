@@ -45,13 +45,18 @@ const Chat: React.FC<ChatProps> = ({ socket, username, room }) => {
       <div className="chat-body">
         {messageList.map((messageContent, index) => {
           return (
-            <div className="message">
+            <div
+              className="message"
+              id={username === messageContent.author ? 'you' : 'other'}
+            >
               <div>
-                <div className="message-content"></div>
-                <p>{messageContent.message}</p>
+                <div className="message-content">
+                  <p>{messageContent.message}</p>
+                </div>
+
                 <div className="message-meta">
-                  <p>{messageContent.time}</p>
-                  <p>{messageContent.author}</p>
+                  <p id="time">{messageContent.time}</p>
+                  <p id="author">{messageContent.author}</p>
                 </div>
               </div>
             </div>
@@ -64,6 +69,9 @@ const Chat: React.FC<ChatProps> = ({ socket, username, room }) => {
           placeholder="hey..."
           onChange={(event) => {
             setCurrentMessage(event.target.value)
+          }}
+          onKeyPress={(event) => {
+            event.key === 'Enter' && sendMessage()
           }}
         />
         <button onClick={sendMessage}>&#9658;</button>
