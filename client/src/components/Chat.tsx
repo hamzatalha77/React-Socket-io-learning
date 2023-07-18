@@ -44,7 +44,15 @@ const Chat: React.FC<ChatProps> = ({ socket, username, room }) => {
       </div>
       <div className="chat-body">
         {messageList.map((messageContent, index) => {
-          return <h1 key={index}>{messageContent.message}</h1>
+          return (
+            <div className="message">
+              <div>
+                <div className="message-content"></div>
+                <p>{messageContent.message}</p>
+                <div className="message-meta"></div>
+              </div>
+            </div>
+          )
         })}
       </div>
       <div className="chat-footer">
